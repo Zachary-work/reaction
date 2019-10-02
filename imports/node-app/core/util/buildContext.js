@@ -38,6 +38,9 @@ export default async function buildContext(context, request = {}) {
   // Add a curried hasPermission tied to the current user (or to no user)
   context.userHasPermission = getHasPermissionFunctionForUser(context.user);
 
+  //
+  // context.hasAuthorization = hasAuthorization();
+
   // Add array of all shopsIds user has permissions for
   context.shopsUserHasPermissionFor = getShopsUserHasPermissionForFunctionForUser(context.user);
 

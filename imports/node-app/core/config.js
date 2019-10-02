@@ -7,6 +7,9 @@ const bodyParserValidator = makeValidator((value) => {
 });
 
 export default envalid.cleanEnv(process.env, {
+  AUTHORIZATION_URL: str({
+    default: "http://api.auth.reaction.localhost:6000/"
+  }),
   BODY_PARSER_SIZE_LIMIT: bodyParserValidator({
     default: 5 * 1000000 // value in bytes = 5mb
   }),
