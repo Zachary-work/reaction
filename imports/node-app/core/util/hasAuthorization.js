@@ -17,16 +17,28 @@ const client = new ApolloClient({
 });
 
 /**
- *
- *
- * @export
- * @param {*} variables
- * @returns
+ * @name hasAuthorization
+ * @summary helper function to check authorization with authz service
+ * @param {Object} variables - data to be passed to in the GQL query
+ * @returns {Boolean} - true/false
  */
-export async function hasAuthorization(variables) {
+export default async function hasAuthorization(variables) {
   const query = gql`
-    query isAuthorized($subject: String, $resource: String, $action: String, $context: JSONObject) {
-      isAuthorized(flavor: glob, input: { subject: $subject, action: $action, context: $context, resource: $resource }) {
+    query isAuthorized(
+      $subject: String
+      $resource: String
+      $action: String
+      $context: JSONObject
+    ) {
+      isAuthorized(
+        flavor: glob
+        input: {
+          subject: $subject
+          action: $action
+          context: $context
+          resource: $resource
+        }
+      ) {
         allowed
       }
     }
