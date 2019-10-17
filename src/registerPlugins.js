@@ -32,6 +32,7 @@ import registerNotificationsPlugin from "./plugins/notifications/index.js";
 import registerProductAdminPlugin from "./plugins/product-admin/index.js";
 import registerProductVariantPlugin from "./plugins/product-variant/index.js";
 import registerShippingRatesPlugin from "./plugins/shipping-rates/index.js";
+import registerSimpleAuthorizationPlugin from "./plugins/simple-authorization/index.js";
 import registerSimpleInventoryPlugin from "./plugins/simple-inventory/index.js";
 import registerSimplePricingPlugin from "./plugins/simple-pricing/index.js";
 import registerSimpleSchemaPlugin from "./plugins/simple-schema/index.js";
@@ -85,6 +86,7 @@ export default async function registerPlugins(app) {
    * Authorization
    */
   await registerAuthorizationPlugin(app); // REQUIRED
+  await registerSimpleAuthorizationPlugin(app); // Optional
 
   /**
    * Catalog

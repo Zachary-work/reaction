@@ -8,24 +8,18 @@ const { curryN } = require("ramda");
  * @name shopsUserHasPermissionFor
  * @method
  * @memberof Accounts
- * @param {Object} user - The user object, with `roles` property, to check.
+ * @param {Object} context App context
  * @param {String} permission - Permission to check for.
  * @returns {Array} Shop IDs user has provided permissions for
  */
-export default function shopsUserHasPermissionFor(user, permission) {
-  if (!user || !user.roles || !permission) return [];
+export default async function shopsUserHasPermissionFor(context, permission) {
+  const { user } = context.user;
+  let shopIds;
 
-  const { roles } = user;
-  const shopIds = [];
-
-  // `role` is a shopId, with an array of permissions attached to it.
-  // Get the key of each shopId, and check if the permission exists on that key
-  // If it does, then user has permission on this shop.
-  Object.keys(roles).forEach((role) => {
-    if (roles[role].includes(permission)) {
-      shopIds.push(role);
-    }
-  });
+  for (const shopsUserHasPermissionForFunc of context.getFunctionsOfType("shopsUserHasPermissionFor")) {
+    // eslint-disable-next-line no-await-in-loop
+    shopIds = await shopsUserHasPermissionForFunc(user, permission);
+  }
 
   return shopIds;
 }
@@ -38,5 +32,5 @@ const shopsUserHasPermissionForCurried = curryN(2, shopsUserHasPermissionFor);
  * @return {Function} shopsUserHasPermissionFor function for `context.user`
  */
 export function getShopsUserHasPermissionForFunctionForUser(context) {
-  return shopsUserHasPermissionForCurried(context.user);
+  return shopsUserHasPermissionForCurried(context);
 }
