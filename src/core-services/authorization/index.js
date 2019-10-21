@@ -1,5 +1,6 @@
 import { getHasPermissionFunctionForUser } from "./util/hasPermission.js";
 import { getShopsUserHasPermissionForFunctionForUser } from "./util/shopsUserHasPermissionFor.js";
+import hasAuthorization from "./util/hasAuthorization.js";
 
 /**
  * @summary Import and call this function to add this plugin to your API.
@@ -13,6 +14,7 @@ export default async function register(app) {
     auth: {
       getHasPermissionFunctionForUser,
       getShopsUserHasPermissionForFunctionForUser
+      hasAuthorization
     }
   });
 }

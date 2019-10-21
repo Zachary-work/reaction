@@ -35,6 +35,9 @@ export default async function buildContext(context, request = {}) {
       if (!allowed) throw new ReactionError("access-denied", "Access Denied");
     };
 
+    // Add authorization helper
+    context.hasAuthorization = context.auth.hasAuthorization;
+
     if (typeof context.auth.getShopsUserHasPermissionForFunctionForUser === "function") {
       context.shopsUserHasPermissionFor = await context.auth.getShopsUserHasPermissionForFunctionForUser(context);
     } else {
