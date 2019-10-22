@@ -13,7 +13,7 @@ export default async function register(app) {
     name: "reaction-authorization",
     auth: {
       getHasPermissionFunctionForUser,
-      getShopsUserHasPermissionForFunctionForUser
+      getShopsUserHasPermissionForFunctionForUser,
       hasAuthorization
     }
   });

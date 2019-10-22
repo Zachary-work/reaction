@@ -1,9 +1,15 @@
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { HttpLink } from "apollo-link-http";
+import { createRequire } from "module";
 import gql from "graphql-tag";
 import fetch from "node-fetch";
-import config from "../config";
+import config from "../../../core/config.js";
+
+// esmodules doesn't allow name imports, so we need
+// to use `require` for the meantime until these
+// packages update to default exports
+const require = createRequire(import.meta.url);
+const { ApolloClient } = require("apollo-client");
+const { InMemoryCache } = require("apollo-cache-inmemory");
+const { HttpLink } = require("apollo-link-http");
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
