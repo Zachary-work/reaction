@@ -150,6 +150,9 @@ function Sidebar(props) {
       </AppBar>
       <List disablePadding>
         {primaryRoutes.filter((route) => {
+          if (!route.permissionRequired) {
+            return true;
+          }
           return Reaction.hasPermission(route.permissionRequired);
         }).map((route) => (
           <NavLink
@@ -204,7 +207,10 @@ function Sidebar(props) {
 
         <Collapse in={isSettingsOpen}>
           {settingRoutes.filter((route) => {
-            return Reaction.hasPermission(route.permissionRequired)
+            if (!route.permissionRequired) {
+              return true;
+            }
+            return Reaction.hasPermission(route.permissionRequired);
           }).map((route) => (
             <NavLink
               activeClassName={activeClassName}
@@ -243,7 +249,7 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {
-  setIsSidebarOpen() {}
+  setIsSidebarOpen() { }
 };
 
 export default compose(
