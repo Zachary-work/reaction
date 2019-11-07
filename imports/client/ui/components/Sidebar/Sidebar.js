@@ -107,8 +107,22 @@ function Sidebar(props) {
     routes
   } = props;
 
-  const primaryRoutes = routes.filter(({ isNavigationLink, isSetting }) => isNavigationLink && !isSetting).sort(routeSort);
-  const settingRoutes = routes.filter(({ isNavigationLink, isSetting }) => isNavigationLink && isSetting).sort(routeSort);
+  const primaryRoutes = routes.filter(({ isNavigationLink, isSetting }) => isNavigationLink && !isSetting).sort(routeSort).filter((route) => {
+    console.log(route);
+    //if permissionRequired is not defined in registerOperatorRoute (which should be the plugin provided by Reaction) and user is admin, shows the menu button, if user is not, hide the menu button
+    if (!route.permissionRequired) {
+      return Reaction.hasPermission(['owner']);
+    }
+    return Reaction.hasPermission(route.permissionRequired);
+  });
+  const settingRoutes = routes.filter(({ isNavigationLink, isSetting }) => isNavigationLink && isSetting).sort(routeSort).filter((route) => {
+    console.log(route);
+    //if permissionRequired is not defined in registerOperatorRoute (which should be the plugin provided by Reaction) and user is admin, shows the menu button, if user is not, hide the menu button
+    if (!route.permissionRequired) {
+      return Reaction.hasPermission(['owner']);
+    }
+    return Reaction.hasPermission(route.permissionRequired);
+  });
 
   let drawerProps = {
     classes: {
@@ -149,12 +163,7 @@ function Sidebar(props) {
         </Toolbar>
       </AppBar>
       <List disablePadding>
-        {primaryRoutes.filter((route) => {
-          if (!route.permissionRequired) {
-            return true;
-          }
-          return Reaction.hasPermission(route.permissionRequired);
-        }).map((route) => (
+        {primaryRoutes.map((route) => (
           <NavLink
             activeClassName={!isSettingsOpen ? activeClassName : null}
             className={classes.link}
@@ -206,12 +215,7 @@ function Sidebar(props) {
         </ListItem>
 
         <Collapse in={isSettingsOpen}>
-          {settingRoutes.filter((route) => {
-            if (!route.permissionRequired) {
-              return true;
-            }
-            return Reaction.hasPermission(route.permissionRequired);
-          }).map((route) => (
+          {settingRoutes.map((route) => (
             <NavLink
               activeClassName={activeClassName}
               className={classes.link}
