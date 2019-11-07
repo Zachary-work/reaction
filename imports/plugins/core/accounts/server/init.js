@@ -156,6 +156,7 @@ Meteor.startup(() => {
 
     // assign default user roles
     user.roles = roles;
+    user.profile = profile;
 
     return user;
   });
