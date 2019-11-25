@@ -1,5 +1,6 @@
 import coreDefaultTemplate from "./coreDefault.js";
 import inviteNewShopMemberTemplate from "./accounts/inviteNewShopMember.js";
+import inviteNewEmployeeTemplate from "./accounts/inviteNewEmployee.js";
 import inviteShopMemberTemplate from "./accounts/inviteShopMember.js";
 import inviteShopOwnerTemplate from "./accounts/inviteShopOwner.js";
 import resetPasswordTemplate from "./accounts/resetPassword.js";
@@ -27,7 +28,13 @@ export default [
   /*
    * Account related email templates
    */
-
+   {
+     language: "en",
+     title: "Accounts - Invite Employee - New Employee Account",
+     name: "accounts/inviteNewEmployee",
+     template: inviteNewEmployeeTemplate,
+     subject: "You have been invited to join the company \"{{companyName}}\" in AMAZ"
+   },
   /*
    * Accounts - Invite Shop member with an Existing User Account
    * When: Admin invites new member to shop
