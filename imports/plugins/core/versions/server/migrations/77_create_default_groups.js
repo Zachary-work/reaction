@@ -55,6 +55,8 @@ Migrations.add({
       'createProduct',
       'product',
       'product/admin',
+      'createProduct',
+      'product/publish',
       'reset-password',
     ]);
     createNewGroup('Company', 'company', [
