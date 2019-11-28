@@ -1,5 +1,6 @@
 export const defaultCustomerRoles = [
   "account/profile",
+  "account/login",
   "cart/completed",
   "guest",
   "index",
@@ -9,6 +10,8 @@ export const defaultCustomerRoles = [
 
 export const defaultVisitorRoles = [
   "anonymous",
+  "account/login",
+  'package',
   "cart/completed",
   "guest",
   "index",

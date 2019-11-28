@@ -93,8 +93,8 @@ export default {
     this.whenAppInstanceReady((app) => app.registerPlugin(packageInfo));
   },
 
-  defaultCustomerRoles: ["guest", "account/profile", "product", "tag", "index", "cart/completed"],
-  defaultVisitorRoles: ["anonymous", "guest", "product", "tag", "index", "cart/completed"],
+  defaultCustomerRoles: ["guest", "account/profile", "account/login", "product", "tag", "index", "cart/completed"],
+  defaultVisitorRoles: ["anonymous", "guest", "account/login", "product", "tag", "index", "cart/completed"],
 
   /**
    * @name canInviteToGroup

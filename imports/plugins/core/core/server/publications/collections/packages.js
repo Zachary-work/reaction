@@ -5,10 +5,10 @@ import { Roles } from "meteor/alanning:roles";
 import { Packages } from "/lib/collections";
 import Reaction from "/imports/plugins/core/core/server/Reaction";
 import { translateRegistry } from "/lib/api";
-
+// import { defaultVisitorRoles } from '/imports/node-app/core-services/account/util/defaultRoles';
 const IDENTITY_PROVIDER_PLUGIN_NAME = "reaction-hydra-oauth";
 const { IDENTITY_PROVIDER_MODE } = process.env;
-
+const defaultVisitorRoles = ['account/login'];
 /**
  * @method transform
  * @memberof Packages
@@ -46,7 +46,8 @@ function transform(doc, userId) {
         registry.permissions.push(registry.name || `${doc.name}/${registry.template}`);
 
         // Delete the route if the user doesn't have the correct permissions
-        if (Roles.userIsInRole(userId, registry.permissions, doc.shopId) === false) {
+        if (!_.intersection(registry.permissions, defaultVisitorRoles).length &&
+          Roles.userIsInRole(userId, registry.permissions, doc.shopId) === false) {
           delete registry.route;
         }
       }
@@ -93,8 +94,6 @@ Meteor.publish("Packages", function (shopId) {
 
   const self = this;
   let myShopId = shopId;
-
-  if (!self.userId) return self.ready();
 
   if (!myShopId) {
     myShopId = Reaction.getPrimaryShopId();
