@@ -4,8 +4,8 @@ import createNewGroup from "/imports/plugins/core/versions/server/util/createNew
 
 Migrations.add({
   version: 77,
-  up() {
-    createNewGroup('Parnter', 'partner', [
+  async up() {
+    await createNewGroup('Parnter', 'partner', [
       'account/login',
       'account/verify',
       'account/profile',
@@ -30,7 +30,7 @@ Migrations.add({
       'shops/edit',
       'reset-password',
     ]);
-    createNewGroup('Supplier', 'supplier', [
+    await createNewGroup('Supplier', 'supplier', [
       'account/login',
       'account/verify',
       'account/profile',
@@ -57,7 +57,7 @@ Migrations.add({
       'product/admin',
       'reset-password',
     ]);
-    createNewGroup('Company', 'company', [
+    await createNewGroup('Company', 'company', [
       'account/login',
       'account/verify',
       'account/profile',
@@ -70,8 +70,11 @@ Migrations.add({
       'accounts/add',
       'accounts/edit',
       'reset-password',
+      'employees/list',
+      'employees/add',
+      'employees/terminated',
     ]);
-    createNewGroup('Employee', 'employee', [
+    await createNewGroup('Employee', 'employee', [
       'account/login',
       'account/verify',
       'account/profile',
@@ -81,18 +84,18 @@ Migrations.add({
       'reset-password',
     ]);
   },
-  down() {
+  async down() {
     const { Groups } = rawCollections;
-    Groups.deleteMany({
+    await Groups.deleteMany({
       slug: 'supplier'
     });
-    Groups.deleteMany({
+    await Groups.deleteMany({
       slug: 'employee'
     });
-    Groups.deleteMany({
+    await Groups.deleteMany({
       slug: 'partner'
     });
-    Groups.deleteMany({
+    await Groups.deleteMany({
       slug: 'company'
     });
   }
