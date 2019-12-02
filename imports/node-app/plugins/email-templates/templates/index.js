@@ -33,7 +33,7 @@ export default [
      title: "Accounts - Invite Employee - New Employee Account",
      name: "accounts/inviteNewEmployee",
      template: inviteNewEmployeeTemplate,
-     subject: "You have been invited to join the company \"{{companyName}}\" in AMAZ"
+     subject: "You have been invited to join the company \"{{shopName}}\" in AMAZ"
    },
   /*
    * Accounts - Invite Shop member with an Existing User Account

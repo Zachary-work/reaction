@@ -73,6 +73,7 @@ Migrations.add({
       'employees/list',
       'employees/add',
       'employees/terminated',
+      'employees/remove',
     ]);
     await createNewGroup('Employee', 'employee', [
       'account/login',
