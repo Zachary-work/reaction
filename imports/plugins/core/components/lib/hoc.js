@@ -5,6 +5,7 @@ import { Roles } from "meteor/alanning:roles";
 import { Accounts } from "/lib/collections";
 import { lifecycle } from "recompose";
 import { composeWithTracker } from "./composer";
+import AnimateHeight from 'react-animate-height';
 
 let i18next;
 let Reaction;
@@ -185,41 +186,26 @@ export function withCSSTransition(component) {
  * @returns {Function} the new wrapped component with a "AnimateHeight" prop
  * @memberof Components/Helpers
  */
+ class ExtendedAnimateHeight extends AnimateHeight {
+   componentWillUnmount() {
+     this.willUnmount = true;
+     super.componentWillUnmount();
+   }
+
+   setState(partialState, callback) {
+     if (this.willUnmount) {
+       return;
+     }
+     super.setState(partialState, callback);
+   }
+ }
+
 export function withAnimateHeight(component) {
   return lifecycle({
     componentDidMount() {
-      import("react-animate-height")
-        .then((module) => {
-          if (this.willUnmount) {
-            return null;
-          }
-
-          // Extend AnimateHeight so that setState can't be called when component is unmounted (prevents memory leak)
-          const AnimateHeight = module.default;
-          class ExtendedAnimateHeight extends AnimateHeight {
-            componentWillUnmount() {
-              this.willUnmount = true;
-              super.componentWillUnmount();
-            }
-
-            setState(partialState, callback) {
-              if (this.willUnmount) {
-                return;
-              }
-              super.setState(partialState, callback);
-            }
-          }
-
-          // Pass extended AnimateHeight to child component
-          this.setState({
-            AnimateHeight: ExtendedAnimateHeight
-          });
-
-          return null;
-        })
-        .catch((error) => {
-          Logger.error(error.message, "Unable to load react-animate-height");
-        });
+      this.setState({
+        AnimateHeight: ExtendedAnimateHeight
+      });
     },
     componentWillUnmount() {
       // Prevent dynamic import from setting state if component is about to unmount
