@@ -28,6 +28,9 @@ export default function sortUsersIntoGroups({ accounts, groups }) {
  */
 export function sortGroups(groups) {
   return groups.sort((prev, next) => {
+    if (next.shopId !== prev.shopId) {
+      return next.shopId.localeCompare(prev.shopId);
+    }
     if (next.slug === "owner") { return 1; } // owner tops
     return next.permissions.length - prev.permissions.length;
   });

@@ -5,6 +5,12 @@ import Reaction from "/imports/plugins/core/core/server/Reaction";
 
 Meteor.publish("Groups", function (query = {}) {
   check(query, Object);
+  
+  const readPermissions = ["reaction-orders", "owner", "admin", "reaction-accounts"];
+  if (Roles.userIsInRole(Reaction.getUserId(), readPermissions, Reaction.getShopId()) && !query.shopId) {
+    return Groups.find();
+  }
+  
   const shopId = query.shopId || Reaction.getShopId();
 
   if (!shopId) {

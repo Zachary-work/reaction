@@ -105,10 +105,10 @@ const handlers = {
 
 const composer = (props, onData) => {
   const shopId = Reaction.getShopId();
-  const grpSub = Meteor.subscribe("Groups", { shopId });
+  const grpSub = Meteor.subscribe("Groups", {});
 
   if (Reaction.Subscriptions.Account.ready() && grpSub.ready()) {
-    const groups = Groups.find({ shopId }).fetch();
+    const groups = Groups.find().fetch();
     const adminGroups = groups.filter((group) => group.slug !== "customer" && group.slug !== "guest");
 
     // Find all accounts that are in any of the admin groups

@@ -89,6 +89,7 @@ class AccountsDashboard extends Component {
   }
 
   render() {
+    console.log(this.state.adminGroups);
     return (
       <div className="accounts-table">
         <div className="group-container" style={{ textAlign: "right" }}>
