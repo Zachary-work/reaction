@@ -54,6 +54,7 @@ export default {
       value: null
     }],
     shopId: "J8Bhq3uTtdgwZx3rz",
+    supportedFulfillmentTypes: ["shipping"],
     isTaxable: true,
     type: "variant"
   }, {
@@ -79,6 +80,7 @@ export default {
       value: null
     }],
     shopId: "J8Bhq3uTtdgwZx3rz",
+    supportedFulfillmentTypes: ["shipping"],
     isTaxable: true,
     type: "variant"
   }, {
@@ -104,6 +106,7 @@ export default {
       value: null
     }],
     shopId: "J8Bhq3uTtdgwZx3rz",
+    supportedFulfillmentTypes: ["shipping"],
     isTaxable: true,
     type: "variant"
   }],
