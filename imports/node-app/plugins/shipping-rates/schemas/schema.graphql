@@ -33,7 +33,7 @@ type FlatRateFulfillmentMethod implements Node {
   """
   The fulfillment types for which this method may be used. For example, "shipping" or "digital".
   """
-  fulfillmentTypes: [FulfillmentType]!
+  fulfillmentTypes: [String]!
 
   "The group to which this method belongs"
   group: String!
@@ -66,7 +66,7 @@ input FlatRateFulfillmentMethodInput {
   """
   The fulfillment types for which this method may be used. For example, "shipping" or "digital".
   """
-  fulfillmentTypes: [FulfillmentType]!
+  fulfillmentTypes: [String]!
 
   "The group to which this method belongs"
   group: String!
