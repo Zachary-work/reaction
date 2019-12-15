@@ -4,7 +4,11 @@ import {
   defaultCustomerRoles,
   defaultOwnerRoles,
   defaultShopManagerRoles,
-  defaultVisitorRoles
+  defaultVisitorRoles,
+  defaultCompanyRoles,
+  defaultEmployeeRoles,
+  defaultPartnerRoles,
+  defaultSupplierRoles,
 } from "./defaultRoles.js";
 
 /**
@@ -28,7 +32,11 @@ export default async function createGroups(context, shopId) {
     "shop manager": defaultShopManagerRoles,
     "customer": defaultCustomerRoles,
     "guest": defaultVisitorRoles,
-    "owner": defaultOwnerRoles
+    "owner": defaultOwnerRoles,
+    "partner": defaultPartnerRoles,
+    "supplier": defaultSupplierRoles,
+    "company": defaultCompanyRoles,
+    "employee": defaultEmployeeRoles
   };
 
   const primaryShop = await Shops.findOne({ shopType: "primary" });
