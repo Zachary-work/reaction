@@ -291,6 +291,11 @@ export const ProductVariant = new SimpleSchema({
     type: String,
     optional: true
   },
+  "supportedFulfillmentTypes": {
+    type: Array,
+    label: "Supported fulfillment types"
+  },
+  "supportedFulfillmentTypes.$": String,
   "title": {
     label: "Label",
     type: String,

@@ -30,6 +30,7 @@ export function xformVariant(variant, variantMedia) {
     sku: variant.sku,
     title: variant.title,
     updatedAt: variant.updatedAt || variant.createdAt || new Date(),
+    supportedFulfillmentTypes: variant.supportedFulfillmentTypes,
     // The _id prop could change whereas this should always point back to the source variant in Products collection
     variantId: variant._id,
     weight: variant.weight,

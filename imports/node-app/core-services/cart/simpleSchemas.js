@@ -768,6 +768,14 @@ export const CartItem = new SimpleSchema({
     label: "Cart Item shopId"
   },
   "subtotal": Money,
+  "supportedFulfillmentTypes": {
+    type: Array,
+    label: "supportedFulfillmentTypes Array"
+  },
+  "supportedFulfillmentTypes.$": {
+    type: String,
+    label: "supportedFulfillmentTypes item"
+  },
   "title": {
     type: String,
     label: "CartItem Title"

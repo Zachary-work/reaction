@@ -258,6 +258,11 @@ export const CatalogProductOption = new SimpleSchema({
     type: String,
     label: "Product ShopId"
   },
+  "supportedFulfillmentTypes": {
+    type: Array,
+    label: "Supported fulfillment types"
+  },
+  "supportedFulfillmentTypes.$": String,
   "sku": {
     type: String,
     label: "SKU",
