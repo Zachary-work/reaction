@@ -75,4 +75,4 @@ import "./73_remove_translations_data";
 import "./74_remove_media_to_grid";
 import "./75_update_media_permissions";
 import "./76_delete_anon_users";
-import "./77_create_default_groups.js";
+import "./77_create_category";
