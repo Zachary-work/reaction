@@ -43,6 +43,7 @@ const variantFieldsThatNeedPublishing = [
   "isVisible",
   "length",
   "metafields",
+  "price",
   "minOrderQuantity",
   "optionTitle",
   "originCountry",
