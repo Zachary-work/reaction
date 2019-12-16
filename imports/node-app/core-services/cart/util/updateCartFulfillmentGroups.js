@@ -27,9 +27,10 @@ export default function updateCartFulfillmentGroups(context, cart) {
 
   (cart.items || []).forEach((item) => {
     let { supportedFulfillmentTypes } = item;
-    if (!supportedFulfillmentTypes || supportedFulfillmentTypes.length === 0) {
+    //TODO: set default fulfillment groups
+    /*if (!supportedFulfillmentTypes || supportedFulfillmentTypes.length === 0) {
       supportedFulfillmentTypes = ["shipping"];
-    }
+    }*/
 
     // Out of the current groups, returns the one that this item should be in by default, if it isn't
     // already in a group

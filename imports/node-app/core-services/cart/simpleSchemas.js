@@ -572,8 +572,6 @@ const Shipment = new SimpleSchema({
   },
   "type": {
     type: String,
-    allowedValues: ["shipping"],
-    defaultValue: "shipping"
   },
   "parcel": {
     type: ShippingParcel,

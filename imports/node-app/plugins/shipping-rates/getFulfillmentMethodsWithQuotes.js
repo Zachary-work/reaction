@@ -15,7 +15,8 @@ import filterShippingMethods from "./util/filterShippingMethods.js";
  * shipping rates.
  * @private
  */
-export default async function getFulfillmentMethodsWithQuotes(context, commonOrder, previousQueryResults = []) {
+export default async function getFulfillmentMethodsWithQuotes(context, commonOrder, previousQueryResults = [], fulfillmentType) {
+  console.log('getFulfillmentMethodsWithQuotes');
   const { collections } = context;
   const { Packages, Shipping } = collections;
   const [rates = [], retrialTargets = []] = previousQueryResults;
@@ -35,6 +36,7 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
 
   // Verify that we have a valid address to work with
   if (!commonOrder.shippingAddress) {
+    console.log(commonOrder);
     const errorDetails = {
       requestStatus: "error",
       shippingProvider: "flat-rate-shipping",
@@ -53,10 +55,20 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     return [rates, retrialTargets];
   }
 
-  const shippingRateDocs = await Shipping.find({
+  const shippingQueryCondition = {
     "shopId": commonOrder.shopId,
-    "provider.enabled": true
-  }).toArray();
+    "provider.enabled": true,
+  }
+
+  if(fulfillmentType){
+    shippingQueryCondition['fulfillmentType'] = {
+      $elemMatch: fulfillmentType
+    }
+  }
+
+  console.log(shippingQueryCondition);
+
+  const shippingRateDocs = await Shipping.find(shippingQueryCondition).toArray();
 
   const initialNumOfRates = rates.length;
 
