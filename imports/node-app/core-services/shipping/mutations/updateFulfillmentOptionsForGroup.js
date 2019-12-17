@@ -60,7 +60,6 @@ function getShipmentQuotesQueryStatus(rates) {
  * @returns {Promise<Object>} An object with a `cart` property containing the updated cart
  */
 export default async function updateFulfillmentOptionsForGroup(context, input) {
-  console.log('updateFulfillmentOptionFromGroup');
   const cleanedInput = inputSchema.clean(input || {});
   inputSchema.validate(cleanedInput);
 
@@ -72,10 +71,9 @@ export default async function updateFulfillmentOptionsForGroup(context, input) {
   if (!fulfillmentGroup) throw new ReactionError("not-found", `Fulfillment group with ID ${fulfillmentGroupId} not found in cart with ID ${cartId}`);
 
   const commonOrder = await context.queries.getCommonOrderForCartGroup(context, { cartId: cart._id, fulfillmentGroupId: fulfillmentGroup._id });
-
   // In the future we want to do this async and subscribe to the results
-  const rates = await context.queries.getFulfillmentMethodsWithQuotes(commonOrder, context);
-  console.log(rates);
+
+  const rates = await context.queries.getFulfillmentMethodsWithQuotes(commonOrder, context, fulfillmentGroup.type);
 
   const { shipmentQuotes, shipmentQuotesQueryStatus } = getShipmentQuotesQueryStatus(rates);
 

@@ -16,7 +16,6 @@ import filterShippingMethods from "./util/filterShippingMethods.js";
  * @private
  */
 export default async function getFulfillmentMethodsWithQuotes(context, commonOrder, previousQueryResults = [], fulfillmentType) {
-  console.log('getFulfillmentMethodsWithQuotes');
   const { collections } = context;
   const { Packages, Shipping } = collections;
   const [rates = [], retrialTargets = []] = previousQueryResults;
@@ -60,14 +59,6 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     "provider.enabled": true,
   }
 
-  if(fulfillmentType){
-    shippingQueryCondition['fulfillmentType'] = {
-      $elemMatch: fulfillmentType
-    }
-  }
-
-  console.log(shippingQueryCondition);
-
   const shippingRateDocs = await Shipping.find(shippingQueryCondition).toArray();
 
   const initialNumOfRates = rates.length;
@@ -86,7 +77,10 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     const awaitedShippingRateDocs = shippingRateDocs.map(async (doc) => {
       const carrier = doc.provider.label;
       // Check for method specific shipping restrictions
-      const availableShippingMethods = await filterShippingMethods(context, doc.methods, commonOrder);
+      const filteredRestrictionShippingMethods = await filterShippingMethods(context, doc.methods, commonOrder)
+      const availableShippingMethods = filteredRestrictionShippingMethods.filter((_method) => {
+        return _method.fulfillmentTypes.includes(fulfillmentType);
+      });
       for (const method of availableShippingMethods) {
         if (!method.rate) {
           method.rate = 0;
