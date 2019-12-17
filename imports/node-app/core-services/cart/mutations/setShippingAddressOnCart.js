@@ -35,14 +35,10 @@ export default async function setShippingAddressOnCart(context, input) {
 
   let didModify = false;
   const updatedFulfillmentGroups = (cart.shipping || []).map((group) => {
-    if (group.type === "shipping") {
-      didModify = true;
-      return { ...group, address };
-    }
-    return group;
+    return { ...group, address };
   });
 
-  if (!didModify) return { cart };
+  //if (!didModify) return { cart };
 
   const updatedCart = {
     ...cart,

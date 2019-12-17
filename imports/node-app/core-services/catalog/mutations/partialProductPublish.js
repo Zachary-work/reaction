@@ -8,7 +8,6 @@
  */
 export default async function partialProductPublish(context, { productId, startFrom }) {
   const { collections: { Catalog, Products, Shops } } = context;
-
   const catalogItem = await Catalog.findOne({ "product.productId": productId });
   const { product: catalogProduct } = catalogItem;
 

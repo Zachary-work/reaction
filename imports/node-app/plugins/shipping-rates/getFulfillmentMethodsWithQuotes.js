@@ -15,7 +15,7 @@ import filterShippingMethods from "./util/filterShippingMethods.js";
  * shipping rates.
  * @private
  */
-export default async function getFulfillmentMethodsWithQuotes(context, commonOrder, previousQueryResults = []) {
+export default async function getFulfillmentMethodsWithQuotes(context, commonOrder, previousQueryResults = [], fulfillmentType) {
   const { collections } = context;
   const { Packages, Shipping } = collections;
   const [rates = [], retrialTargets = []] = previousQueryResults;
@@ -35,6 +35,7 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
 
   // Verify that we have a valid address to work with
   if (!commonOrder.shippingAddress) {
+    console.log(commonOrder);
     const errorDetails = {
       requestStatus: "error",
       shippingProvider: "flat-rate-shipping",
@@ -53,10 +54,12 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     return [rates, retrialTargets];
   }
 
-  const shippingRateDocs = await Shipping.find({
+  const shippingQueryCondition = {
     "shopId": commonOrder.shopId,
-    "provider.enabled": true
-  }).toArray();
+    "provider.enabled": true,
+  }
+
+  const shippingRateDocs = await Shipping.find(shippingQueryCondition).toArray();
 
   const initialNumOfRates = rates.length;
 
@@ -74,7 +77,10 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     const awaitedShippingRateDocs = shippingRateDocs.map(async (doc) => {
       const carrier = doc.provider.label;
       // Check for method specific shipping restrictions
-      const availableShippingMethods = await filterShippingMethods(context, doc.methods, commonOrder);
+      const filteredRestrictionShippingMethods = await filterShippingMethods(context, doc.methods, commonOrder)
+      const availableShippingMethods = filteredRestrictionShippingMethods.filter((_method) => {
+        return _method.fulfillmentTypes.includes(fulfillmentType);
+      });
       for (const method of availableShippingMethods) {
         if (!method.rate) {
           method.rate = 0;

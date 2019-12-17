@@ -10,7 +10,7 @@ import extendCommonOrder from "../util/extendCommonOrder.js";
  * @returns {Array} return updated rates in cart
  * @private
  */
-export default async function getFulfillmentMethodsWithQuotes(commonOrder, context) {
+export default async function getFulfillmentMethodsWithQuotes(commonOrder, context, fulfillmentType) {
   const rates = [];
   const retrialTargets = [];
 
@@ -23,12 +23,12 @@ export default async function getFulfillmentMethodsWithQuotes(commonOrder, conte
   const commonOrderExtended = await extendCommonOrder(context, commonOrder);
 
   const funcs = context.getFunctionsOfType("getFulfillmentMethodsWithQuotes");
-  let promises = funcs.map((rateFunction) => rateFunction(context, commonOrderExtended, [rates, retrialTargets]));
+  let promises = funcs.map((rateFunction) => rateFunction(context, commonOrderExtended, [rates, retrialTargets], fulfillmentType));
   await Promise.all(promises);
 
   // Try once more.
   if (retrialTargets.length > 0) {
-    promises = funcs.map((rateFunction) => rateFunction(context, commonOrderExtended, [rates, retrialTargets]));
+    promises = funcs.map((rateFunction) => rateFunction(context, commonOrderExtended, [rates, retrialTargets], fulfillmentType));
     await Promise.all(promises);
 
     if (retrialTargets.length > 0) {
