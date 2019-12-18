@@ -324,10 +324,9 @@ export default {
     symbol: "$"
   },
   HKD: {
-    enabled: false,
+    enabled: true,
     format: "%s%v",
-    symbol: "HK$",
-    decimal: ","
+    symbol: "HK$"
   },
   HRK: {
     enabled: false,

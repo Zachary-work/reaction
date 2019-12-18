@@ -440,10 +440,9 @@ export default {
         symbol: "$"
       },
       HKD: {
-        enabled: false,
+        enabled: true,
         format: "%s%v",
-        symbol: "HK$",
-        decimal: ","
+        symbol: "HK$"
       },
       HRK: {
         enabled: false,
@@ -622,10 +621,10 @@ export default {
         scale: 0
       }
     },
-    currency: "USD",
+    currency: "HKD",
     defaultNavigationTreeId: "XyS5wksrr9gTQLN9i",
     emails: [
-      { address: "admin@localhost", verified: true }
+      { address: "admin@localhost", verified: true, provided: "default" }
     ],
     language: "en",
     languages: [
@@ -3282,8 +3281,8 @@ export default {
         }
       }
     },
-    name: "Reaction",
-    timezone: "US/Pacific",
+    name: "AMAZ",
+    timezone: "Asia/Hong_Kong",
     baseUOL: "in",
     unitsOfLength: [{
       uol: "in",
