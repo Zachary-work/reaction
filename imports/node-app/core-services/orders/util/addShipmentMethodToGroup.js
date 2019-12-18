@@ -1,5 +1,6 @@
 import ReactionError from "@reactioncommerce/reaction-error";
 import xformOrderGroupToCommonOrder from "./xformOrderGroupToCommonOrder.js";
+import _ from 'lodash';
 
 /**
  * @summary Sets `shipmentMethod` object for a fulfillment group
@@ -39,7 +40,30 @@ export default async function addShipmentMethodToGroup(context, {
 
   // We are passing commonOrder in here, but we need the finalGroup.shipmentMethod data inside of final order, which doesn't get set until after this
   // but we need the data from this in order to set it
-  const rates = await queries.getFulfillmentMethodsWithQuotes(commonOrder, context);
+
+  const { Shipping } = collections;
+
+  const shipping = await Shipping.findOne({ methods: {
+    $elemMatch: {
+      _id: selectedFulfillmentMethodId
+    }
+  }});
+
+  if(_.isEmpty(shipping)) {
+    throw new ReactionError('not-found', 'shipping method with selectedFulfillmentMethodId not found');
+  }
+
+  const fulfillmentMethod = _.get(shipping, 'methods', []).find((_method) => {
+    return _method._id == selectedFulfillmentMethodId;
+  });
+  //One method can only have one type
+  const fulfillmentType = _.get(fulfillmentMethod, 'fulfillmentTypes.0');
+
+  if(_.isEmpty(fulfillmentType)){
+    throw new ReactionError('not-found', 'shipping method does not belongs to any fulfillment type');
+  }
+
+  const rates = await queries.getFulfillmentMethodsWithQuotes(commonOrder, context, fulfillmentType);
   const errorResult = rates.find((option) => option.requestStatus === "error");
   if (errorResult) {
     throw new ReactionError("invalid", errorResult.message);
@@ -61,4 +85,5 @@ export default async function addShipmentMethodToGroup(context, {
     handling: selectedFulfillmentMethod.handlingPrice,
     rate: selectedFulfillmentMethod.rate
   };
+
 }
