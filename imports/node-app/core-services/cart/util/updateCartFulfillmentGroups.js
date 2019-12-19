@@ -58,5 +58,10 @@ export default function updateCartFulfillmentGroups(context, cart) {
     group.itemIds = (group.itemIds || []).filter((itemId) => !!cart.items.find((item) => item._id === itemId));
   });
 
-  cart.shipping = currentGroups;
+  //Group maybe also be empty. Need to remove them when they have no items.
+  filteredCurrentGroups = currentGroups.filter((_group) => {
+    return _group.itemIds.length > 0;
+  });
+
+  cart.shipping = filteredCurrentGroups;
 }
