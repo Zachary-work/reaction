@@ -48,7 +48,8 @@ const variantFieldsThatNeedPublishing = [
   "title",
   "type",
   "weight",
-  "width"
+  "width",
+  "tags"
 ];
 
 /**
