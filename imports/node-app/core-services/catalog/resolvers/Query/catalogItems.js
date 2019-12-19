@@ -20,7 +20,7 @@ import xformCatalogBooleanFilters from "../../utils/catalogBooleanFilters.js";
  * @returns {Promise<Object>} A CatalogItemConnection object
  */
 export default async function catalogItems(_, args, context, info) {
-  const { shopIds: opaqueShopIds, tagIds: opaqueTagIds, booleanFilters, ...connectionArgs } = args;
+  const { shopIds: opaqueShopIds, tagIds: opaqueTagIds, productTitle, minPrice, currencyCode, categories, booleanFilters, ...connectionArgs } = args;
 
   const shopIds = opaqueShopIds && opaqueShopIds.map(decodeShopOpaqueId);
   const tagIds = opaqueTagIds && opaqueTagIds.map(decodeTagOpaqueId);
@@ -70,7 +70,11 @@ export default async function catalogItems(_, args, context, info) {
   const query = await context.queries.catalogItems(context, {
     catalogBooleanFilters,
     shopIds,
-    tagIds
+    tagIds,
+    productTitle,
+    currencyCode,
+    minPrice,
+    categories
   });
 
   return getPaginatedResponse(query, connectionArgs, {

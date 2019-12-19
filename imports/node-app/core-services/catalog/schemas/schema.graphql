@@ -402,6 +402,18 @@ extend type Query {
     "Optionally provide a list of tag IDs to further filter the item list"
     tagIds: [ID],
 
+    "Search Product by product title, provided by AMAZ"
+    productTitle: String
+
+    "Search product by minPrice, provided by AMAZ"
+    minPrice: Float
+
+    "Set the currencyCode you want to apply to this search, provided by AMAZ"
+    currencyCode: String!
+
+    "Search products by categories, you should put the category ID in the array, provided by AMAZ"
+    categories: [String]
+
     "Additional filters to apply"
     booleanFilters: [CatalogBooleanFilter],
 

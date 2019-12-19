@@ -195,6 +195,16 @@ export const CatalogProductOption = new SimpleSchema({
     label: "Barcode",
     optional: true
   },
+  "campaigns": {
+    type: Array,
+    label: "Campaign array",
+    optional: true,
+    defaultValue: []
+  },
+  "campaigns.$": {
+    type: String,
+    label: "Campaign value"
+  },
   "createdAt": {
     type: Date,
     label: "Date/time this variant was created at"
@@ -209,6 +219,16 @@ export const CatalogProductOption = new SimpleSchema({
   "index": {
     type: SimpleSchema.Integer,
     label: "The position of this variant among other variants at the same level of the product-variant-option hierarchy"
+  },
+  "labels": {
+    type: Array,
+    label: "Label array for supplier to search/manage product",
+    optional: true,
+    defaultValue: []
+  },
+  "labels.$": {
+    type: String,
+    label: "Label value in labels array"
   },
   "length": {
     type: Number,
@@ -254,6 +274,10 @@ export const CatalogProductOption = new SimpleSchema({
     label: "Primary Image",
     optional: true
   },
+  "productType": {
+    type: String,
+    label: "AMAZ product type e.g. [physical/digital/coupon]"
+  },
   "shopId": {
     type: String,
     label: "Product ShopId"
@@ -267,6 +291,16 @@ export const CatalogProductOption = new SimpleSchema({
     type: String,
     label: "SKU",
     optional: true
+  },
+  "tags": {
+    type: Array,
+    label: "public tags array",
+    optional: true,
+    defaultValue: []
+  },
+  "tags.$": {
+    type: String,
+    label: "public tag ID"
   },
   "title": {
     type: String,
@@ -295,6 +329,20 @@ export const CatalogProductOption = new SimpleSchema({
     min: 0,
     optional: true,
     defaultValue: 0
+  },
+  "isExclusive": {
+    type: Boolean,
+    label: "Is exclusive",
+  },
+  "exclusiveTo": {
+    type: Array,
+    label: "Exclusive To company",
+    optional: true,
+    defaultValue: []
+  },
+  "exclusiveTo.$": {
+    type: String,
+    label: "Exclusive to company ID"
   }
 });
 
@@ -360,6 +408,14 @@ export const CatalogProduct = new SimpleSchema({
     type: String,
     label: "Barcode",
     optional: true
+  },
+  "categories": {
+    type: Array,
+    label: "Categories ids array for the product"
+  },
+  "categories.$": {
+    type: String,
+    label: "Category ID for the product"
   },
   "createdAt": {
     type: Date,
