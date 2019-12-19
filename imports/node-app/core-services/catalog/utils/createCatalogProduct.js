@@ -26,6 +26,10 @@ export function xformVariant(variant, variantMedia) {
     optionTitle: variant.optionTitle,
     originCountry: variant.originCountry,
     primaryImage,
+    productType: variant.productType,
+    tags: variant.tags,
+    labels: variant.labels,
+    campaigns: variant.campaigns,
     shopId: variant.shopId,
     sku: variant.sku,
     title: variant.title,
@@ -34,7 +38,9 @@ export function xformVariant(variant, variantMedia) {
     // The _id prop could change whereas this should always point back to the source variant in Products collection
     variantId: variant._id,
     weight: variant.weight,
-    width: variant.width
+    width: variant.width,
+    isExclusive: variant.isExclusive,
+    exclusiveTo: variant.exclusiveTo
   };
 }
 
@@ -121,7 +127,8 @@ export async function xformProduct({ context, product, variants }) {
     variants: catalogProductVariants,
     vendor: product.vendor,
     weight: product.weight,
-    width: product.width
+    width: product.width,
+    categories: product.categories
   };
 }
 

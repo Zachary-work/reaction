@@ -8,6 +8,7 @@ import getTopLevelProduct from "./getTopLevelProduct.js";
 
 const productFieldsThatNeedPublishing = [
   "_id",
+  "categories",
   "description",
   "facebookMsg",
   "googleplusMsg",
@@ -44,15 +45,19 @@ const variantFieldsThatNeedPublishing = [
   "length",
   "metafields",
   "price",
+  "productType",
   "minOrderQuantity",
   "optionTitle",
   "originCountry",
   "shopId",
   "sku",
+  "supportedFulfillmentTypes",
   "title",
   "type",
   "weight",
-  "width"
+  "width",
+  "isExclusive",
+  "exclusiveTo"
 ];
 
 /**
