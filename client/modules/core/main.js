@@ -157,6 +157,7 @@ export default {
       //
       // return if user has permissions in the group
       //
+      console.log('userIsInRole:', userId, permissions, group);
       if (Roles.userIsInRole(userId, permissions, group)) {
         return true;
       }
