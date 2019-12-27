@@ -1,5 +1,6 @@
 import _ from "lodash";
 import SimpleSchema from "simpl-schema";
+import util from 'util';
 import Logger from "@reactioncommerce/logger";
 import Random from "@reactioncommerce/random";
 import ReactionError from "@reactioncommerce/reaction-error";
@@ -315,14 +316,21 @@ export default async function placeOrder(context, input) {
     order.customFields = customFieldsFromClient;
   }
 
-  // Validate and save
-  OrderSchema.validate(order);
-  await Orders.insertOne(order);
+  const transformedOrder = await getFunctionsOfType('transformOrder').reduce(async (acc, _transformOrder) => {
+    const order = await acc;
+    return _transformOrder(context, order);
+  }, Promise.resolve(order));
 
-  await appEvents.emit("afterOrderCreate", { createdBy: userId, order });
+  console.log('transformedOrder', util.inspect(transformedOrder, {showHidden: false, depth: null}));
+
+  // Validate and save
+  OrderSchema.validate(transformedOrder);
+  await Orders.insertOne(transformedOrder);
+
+  await appEvents.emit("afterOrderCreate", { createdBy: userId, order: transformedOrder });
 
   return {
-    orders: [order],
+    orders: [transformedOrder],
     // GraphQL response gets the raw token
     token: fullToken && fullToken.token
   };

@@ -750,6 +750,13 @@ export const OrderItem = new SimpleSchema({
   "campaigns.$": {
     type: String
   },
+  "coupons": {
+    type: Array,
+    optional: true
+  },
+  "coupons.$": {
+    type: String
+  },
   "createdAt": Date,
   "documents": {
     type: Array,
