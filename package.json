@@ -135,6 +135,7 @@
     "react-tether": "^0.6.1",
     "react-textarea-autosize": "^5.2.1",
     "react-transition-group": "2.4.0",
+    "reaction-file-collections-sa-s3": "^0.1.2",
     "reacto-form": "0.0.2",
     "recompose": "^0.26.0",
     "shallowequal": "^1.0.2",
@@ -265,7 +266,8 @@
             "@reactioncommerce/reaction-graphql-xforms": "./imports/plugins/core/graphql/server/no-meteor/xforms",
             "@reactioncommerce/reaction-router": "./imports/plugins/core/router/lib",
             "@reactioncommerce/reaction-ui": "./imports/plugins/core/ui/client/components",
-            "underscore": "lodash"
+            "underscore": "lodash",
+            "@reactioncommerce/file-collections-sa-s3": "reaction-file-collections-sa-s3"
           }
         }
       ]

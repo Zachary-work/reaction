@@ -10,6 +10,8 @@ import {
   TempFileStoreWorker
 } from "@reactioncommerce/file-collections";
 import GridFSStore from "@reactioncommerce/file-collections-sa-gridfs";
+import S3Store from "@reactioncommerce/file-collections-sa-s3";
+
 import config from "./config.js";
 import createSaveImageJob from "./util/createSaveImageJob.js";
 
@@ -70,12 +72,30 @@ export default function setUpFileCollections({
    * @returns {GridFSStore} New GridFS store instance
    */
   const buildGFS = ({ name, transform }) => (
-    new GridFSStore({
-      chunkSize: gridFSStoresChunkSize,
-      collectionPrefix: "cfs_gridfs.",
-      db,
-      mongodb,
-      name,
+    // new GridFSStore({
+    //   chunkSize: gridFSStoresChunkSize,
+    //   collectionPrefix: "cfs_gridfs.",
+    //   db,
+    //   mongodb,
+    //   name,
+    //   async transformWrite(fileRecord) {
+    //     if (!transform) return null;
+    //
+    //     const { size, mod, format, type } = transform;
+    //
+    //     // Need to update the content type and extension of the file info, too.
+    //     // The new size gets set correctly automatically by FileCollections package.
+    //     fileRecord.type(type, { store: name });
+    //     fileRecord.extension(format, { store: name });
+    //
+    //     // resizing image, adding mod, setting output format
+    //     return sharp().resize(size, size)[mod]().toFormat(format);
+    //   }
+    // })
+    new S3Store({
+      name, // Should be provided within buildGFS
+      isPublic: true,
+      objectACL: "public-read",
       async transformWrite(fileRecord) {
         if (!transform) return null;
 
@@ -85,7 +105,6 @@ export default function setUpFileCollections({
         // The new size gets set correctly automatically by FileCollections package.
         fileRecord.type(type, { store: name });
         fileRecord.extension(format, { store: name });
-
         // resizing image, adding mod, setting output format
         return sharp().resize(size, size)[mod]().toFormat(format);
       }
