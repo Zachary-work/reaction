@@ -126,7 +126,7 @@ export default async function addCartItems(context, currentItems, inputItems, op
       productId,
       productSlug: catalogProduct.slug,
       productVendor: catalogProduct.vendor,
-      productType: catalogProduct.type,
+      productType: chosenVariant.productType,
       productTagIds: catalogProduct.tagIds,
       quantity,
       shopId: catalogProduct.shopId,
@@ -140,7 +140,10 @@ export default async function addCartItems(context, currentItems, inputItems, op
       title: catalogProduct.title,
       updatedAt: currentDateTime,
       variantId: productVariantId,
-      variantTitle: chosenVariant.title
+      variantTitle: chosenVariant.title,
+      labels: chosenVariant.labels,
+      campaigns: chosenVariant.campaigns,
+      tags: chosenVariant.tags
     };
 
     if (variantPriceInfo.compareAtPrice || variantPriceInfo.compareAtPrice === 0) {

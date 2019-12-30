@@ -95,6 +95,12 @@ export const defaultSupplierRoles = [
   'amaz_fulfillment_methods/list',
   'amaz_fulfillment_methods/add',
   'amaz_fulfillment_methods/edit',
+  'amaz_orders/list',
+  'amaz_orders/edit',
+  'amaz_coupons/list',
+  'amaz_coupons/edit',
+  'amaz_digital_orders/list',
+  'amaz_digital_orders/edit'
 ];
 
 export const defaultCompanyRoles = [

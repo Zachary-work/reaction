@@ -715,11 +715,25 @@ export const CartItem = new SimpleSchema({
     optional: true
   },
   "attributes.$": CartItemAttribute,
+  "campaigns": {
+    type: Array,
+    optional: true
+  },
+  "campaigns.$": {
+    type: String
+  },
   "compareAtPrice": {
     type: Money,
     optional: true
   },
   "createdAt": Date,
+  "labels": {
+    type: Array,
+    optional: true
+  },
+  "labels.$": {
+    type: String
+  },
   "metafields": {
     type: Array,
     optional: true
@@ -773,6 +787,14 @@ export const CartItem = new SimpleSchema({
   "supportedFulfillmentTypes.$": {
     type: String,
     label: "supportedFulfillmentTypes item"
+  },
+  "tags": {
+    type: Array,
+    optional: true,
+    label: "Tags customizeed by AMAZ"
+  },
+  "tags.$": {
+    type: String
   },
   "title": {
     type: String,

@@ -743,6 +743,20 @@ export const OrderItem = new SimpleSchema({
     type: String,
     optional: true
   },
+  "campaigns": {
+    type: Array,
+    optional: true
+  },
+  "campaigns.$": {
+    type: String
+  },
+  "coupons": {
+    type: Array,
+    optional: true
+  },
+  "coupons.$": {
+    type: String
+  },
   "createdAt": Date,
   "documents": {
     type: Array,
@@ -757,6 +771,13 @@ export const OrderItem = new SimpleSchema({
   },
   "history.$": {
     type: History
+  },
+  "labels": {
+    type: Array,
+    optional: true
+  },
+  "labels.$": {
+    type: String
   },
   "optionTitle": {
     type: String,
@@ -795,6 +816,13 @@ export const OrderItem = new SimpleSchema({
   },
   "shopId": String,
   "subtotal": Number,
+  "tags": {
+    type: Array,
+    optional: true
+  },
+  "tags.$": {
+    type: String
+  },
   "title": String,
   "updatedAt": Date,
   "variantId": {
