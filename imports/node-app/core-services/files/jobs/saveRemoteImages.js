@@ -8,7 +8,7 @@
 export default function saveRemoteImages(context, remoteUrlWorker) {
   context.backgroundJobs.addWorker({
     type: "saveImage/remote",
-    pollInterval: 3 * 1000, // poll every 3 seconds
+    pollInterval: 1000, // poll every 1 seconds
     workTimeout: 10 * 60 * 1000, // No image import should last more than 10 minutes
     async worker(job) {
       const { collectionName, doc } = job.data;
