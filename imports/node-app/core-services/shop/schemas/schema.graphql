@@ -68,6 +68,8 @@ type Shop implements Node {
 
   "Returns URLs for shop logos"
   shopLogoUrls: ShopLogoUrls
+  
+  logo: String
 
   "Returns URLs for various storefront routes"
   storefrontUrls: StorefrontUrls
