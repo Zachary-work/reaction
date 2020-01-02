@@ -23,7 +23,6 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     packageName: "flat-rate-shipping",
     fileName: "hooks.js"
   };
-  console.log('rates at start', rates);
 
   if (retrialTargets.length > 0) {
     const isNotAmongFailedRequests = retrialTargets.every((target) =>
@@ -36,7 +35,6 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
 
   // Verify that we have a valid address to work with
   if (!commonOrder.shippingAddress) {
-    console.log(commonOrder);
     const errorDetails = {
       requestStatus: "error",
       shippingProvider: "flat-rate-shipping",
@@ -45,11 +43,6 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     rates.push(errorDetails);
     return [rates, retrialTargets];
   }
-
-  console.log({
-    name: "reaction-shipping-rates",
-    shopId: commonOrder.shopId
-  });
 
   const pkgData = await Packages.findOne({
     name: "reaction-shipping-rates",
@@ -65,16 +58,12 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     "provider.enabled": true,
   }
 
-  console.log(shippingQueryCondition);
-
   const shippingRateDocs = await Shipping.find(shippingQueryCondition).toArray();
-  console.log('shippingRateDocs', shippingRateDocs);
 
   const initialNumOfRates = rates.length;
 
   // Get hydrated order, an object of current order data including item and destination information
   const isOrderShippingRestricted = await isShippingRestricted(context, commonOrder);
-  console.log('isOrderShippingRestricted', isOrderShippingRestricted);
 
   if (isOrderShippingRestricted) {
     const errorDetails = {
@@ -116,8 +105,6 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     });
     await Promise.all(awaitedShippingRateDocs);
   }
-
-  console.log('rates:', rates, initialNumOfRates);
 
   if (rates.length === initialNumOfRates) {
     const errorDetails = {

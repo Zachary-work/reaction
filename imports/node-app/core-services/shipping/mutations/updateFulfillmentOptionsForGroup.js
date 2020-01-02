@@ -64,7 +64,6 @@ export default async function updateFulfillmentOptionsForGroup(context, input) {
   inputSchema.validate(cleanedInput);
 
   const { cartId, cartToken, fulfillmentGroupId } = cleanedInput;
-  console.log('calling updateFulfillmentOptionsForGroup', fulfillmentGroupId);
 
   const cart = await getCartById(context, cartId, { cartToken, throwIfNotFound: true });
 
@@ -75,7 +74,6 @@ export default async function updateFulfillmentOptionsForGroup(context, input) {
   // In the future we want to do this async and subscribe to the results
 
   const rates = await context.queries.getFulfillmentMethodsWithQuotes(commonOrder, context, fulfillmentGroup.type);
-  console.log(rates);
 
   const { shipmentQuotes, shipmentQuotesQueryStatus } = getShipmentQuotesQueryStatus(rates);
 

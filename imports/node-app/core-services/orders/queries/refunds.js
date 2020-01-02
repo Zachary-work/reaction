@@ -19,7 +19,6 @@ export default async function refunds(context, { orderId, shopId, token } = {}) 
   }
 
   const selector = await getOrderQuery(context, { _id: orderId }, shopId, token);
-  console.log('refunds selector', selector);
   const order = await context.collections.Orders.findOne(selector);
 
   if (!order) {
