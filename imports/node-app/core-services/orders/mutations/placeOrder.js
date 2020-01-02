@@ -321,8 +321,6 @@ export default async function placeOrder(context, input) {
     return _transformOrder(context, order);
   }, Promise.resolve(order));
 
-  console.log('transformedOrder', util.inspect(transformedOrder, {showHidden: false, depth: null}));
-
   // Validate and save
   OrderSchema.validate(transformedOrder);
   await Orders.insertOne(transformedOrder);

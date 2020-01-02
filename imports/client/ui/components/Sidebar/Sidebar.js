@@ -108,7 +108,6 @@ function Sidebar(props) {
   } = props;
 
   const primaryRoutes = routes.filter(({ isNavigationLink, isSetting }) => isNavigationLink && !isSetting).sort(routeSort).filter((route) => {
-    console.log(route);
     //if permissionRequired is not defined in registerOperatorRoute (which should be the plugin provided by Reaction) and user is admin, shows the menu button, if user is not, hide the menu button
     if (!route.permissionRequired) {
       return Reaction.hasPermission(['owner']);
@@ -116,7 +115,6 @@ function Sidebar(props) {
     return Reaction.hasPermission(route.permissionRequired);
   });
   const settingRoutes = routes.filter(({ isNavigationLink, isSetting }) => isNavigationLink && isSetting).sort(routeSort).filter((route) => {
-    console.log(route);
     //if permissionRequired is not defined in registerOperatorRoute (which should be the plugin provided by Reaction) and user is admin, shows the menu button, if user is not, hide the menu button
     if (!route.permissionRequired) {
       return Reaction.hasPermission(['owner']);
