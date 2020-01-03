@@ -212,6 +212,8 @@ type Account implements Node {
 
   "The full name of the person this account represents, if known"
   name: String
+  
+  avatar: String
 
   "Some note about this account"
   note: String

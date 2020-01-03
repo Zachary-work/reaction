@@ -13,6 +13,10 @@ const inputSchema = new SimpleSchema({
     type: String,
     optional: true
   },
+  "avatar" : {
+    type: String,
+    optional: true
+  },
   "profile": {
     type: Object,
     blackbox: true,

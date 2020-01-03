@@ -156,6 +156,18 @@ export const Accounts = new SimpleSchema({
     type: String,
     optional: true
   },
+  "firstname": {
+    type: String,
+    optional: true
+  },
+  "lastname": {
+    type: String,
+    optional: true
+  },
+  "avatar": {
+    type: String,
+    optional: true
+  },
   "username": {
     type: String,
     optional: true
