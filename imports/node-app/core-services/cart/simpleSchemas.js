@@ -312,7 +312,11 @@ const ShippingMethod = new SimpleSchema({
   "fulfillmentTypes": {
     type: Array
   },
-  "fulfillmentTypes.$": String
+  "fulfillmentTypes.$": String,
+  "methodType": {
+    type: String,
+    optional: true
+  }
 });
 
 /**

@@ -130,7 +130,8 @@ function xformCartFulfillmentGroup(fulfillmentGroup, cart) {
       displayName: option.method.label || option.method.name,
       group: option.method.group || null,
       name: option.method.name,
-      fulfillmentTypes: option.method.fulfillmentTypes
+      fulfillmentTypes: option.method.fulfillmentTypes,
+      methodType: option.method.methodType
     },
     handlingPrice: {
       amount: option.handlingPrice || 0,
