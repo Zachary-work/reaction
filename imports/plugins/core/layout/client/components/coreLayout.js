@@ -41,7 +41,10 @@ function CoreLayout({ classes, isAdmin, isLoading, isLoggedIn, location, storefr
   if (isLoading || isLoggingOut) return null;
 
   let content = <Components.Login />;
-
+  
+  if (location.pathname.startsWith("/account/login")) {
+      return content;
+  }
   // If we're not on /account or /account/login for hydra, and the user is signed in,
   // then we will redirect or show a logout button
   if (!location.pathname.startsWith("/account") && !location.pathname.startsWith("/reset")) {
