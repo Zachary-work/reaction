@@ -409,6 +409,15 @@ export const CatalogProduct = new SimpleSchema({
     label: "Barcode",
     optional: true
   },
+  "campaigns": {
+    type: Array,
+    label: "Campaigns ids array for the product",
+    optional: true
+  },
+  "campaigns.$": {
+    type: String,
+    label: "Campaign ID for the product"
+  },
   "categories": {
     type: Array,
     label: "Categories ids array for the product"
@@ -533,6 +542,15 @@ export const CatalogProduct = new SimpleSchema({
     defaultValue: ["shipping"]
   },
   "supportedFulfillmentTypes.$": String,
+  "tags": {
+    type: Array,
+    label: "Tag Ids for the product",
+    optional: true
+  },
+  "tags.$":{
+    type: String,
+    label: "Tag ID for the product"
+  },
   "tagIds": {
     type: Array,
     label: "Hashtags",
