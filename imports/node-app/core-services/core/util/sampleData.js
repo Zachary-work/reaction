@@ -34,7 +34,8 @@ export default {
     type: "simple",
     title: "Example Product",
     updatedAt: new Date("2014-06-01T12:17:13.949-0700"),
-    vendor: "Example Manufacturer"
+    vendor: "Example Manufacturer",
+    productType: "phyical"
   }, {
     _id: "6qiqPwBkeJdtdQc4G",
     ancestors: [
@@ -56,7 +57,8 @@ export default {
     shopId: "J8Bhq3uTtdgwZx3rz",
     supportedFulfillmentTypes: ["shipping"],
     isTaxable: true,
-    type: "variant"
+    type: "variant",
+    productType: "phyical"
   }, {
     _id: "SMr4rhDFnYvFMtDTX",
     ancestors: [
@@ -82,7 +84,8 @@ export default {
     shopId: "J8Bhq3uTtdgwZx3rz",
     supportedFulfillmentTypes: ["shipping"],
     isTaxable: true,
-    type: "variant"
+    type: "variant",
+    productType: "phyical"
   }, {
     _id: "CJoRBm9vRrorc9mxZ",
     ancestors: [
@@ -108,7 +111,8 @@ export default {
     shopId: "J8Bhq3uTtdgwZx3rz",
     supportedFulfillmentTypes: ["shipping"],
     isTaxable: true,
-    type: "variant"
+    type: "variant",
+    productType: "phyical"
   }],
   shops: [{
     _id: "J8Bhq3uTtdgwZx3rz",
