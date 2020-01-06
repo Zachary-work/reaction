@@ -24,7 +24,7 @@ const GroupsTable = (props) => {
 
   return (
     <Components.List>
-      <Components.ListItem label={group.name} />
+      <Components.ListItem label={`${group.name} ${group.shopId}`} />
       <div className={tableClass(group.users.length)}>
         <SortableTable
           data={group.users}
