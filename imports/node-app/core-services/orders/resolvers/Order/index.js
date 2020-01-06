@@ -13,7 +13,17 @@ export default {
   account: resolveAccountFromAccountId,
   cartId: (node) => encodeCartOpaqueId(node._id),
   displayStatus: (node, { language }, context) => orderDisplayStatus(context, node, language),
-  fulfillmentGroups: (node) => node.shipping || [],
+  fulfillmentGroups: (node, {input}, context) => {
+    if(context.userId === node.accountId){
+      return node.shipping;
+    }
+    if(context.userHasPermission(['admin'], context.account.shopId)){
+      return node.shipping;
+    }
+    return node.shipping.filter((_shipping) => {
+      return _shipping.shopId === context.account.shopId;
+    });
+  },
   notes: (node) => node.notes || [],
   payments: (node, _, context) => payments(context, node),
   refunds: (node, _, context) => refunds(context, node),
