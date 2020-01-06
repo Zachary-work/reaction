@@ -327,7 +327,7 @@ export const ShopAddress = new SimpleSchema({
  * @property {Boolean} verified optional
  */
 export const Email = new SimpleSchema({
-  provided: {
+  provides: {
     type: String,
     defaultValue: "default",
     optional: true

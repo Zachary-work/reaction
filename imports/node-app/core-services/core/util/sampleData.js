@@ -628,7 +628,7 @@ export default {
     currency: "HKD",
     defaultNavigationTreeId: "XyS5wksrr9gTQLN9i",
     emails: [
-      { address: "admin@localhost", verified: true, provided: "default" }
+      { address: "admin@localhost", verified: true, provides: "default" }
     ],
     language: "en",
     languages: [
