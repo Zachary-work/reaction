@@ -15,7 +15,8 @@ const methodSchema = new SimpleSchema({
   "isEnabled": Boolean,
   "label": String,
   "name": String,
-  "rate": Number
+  "rate": Number,
+  "methodType": String
 });
 
 export default methodSchema;
