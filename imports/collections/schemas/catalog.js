@@ -219,7 +219,11 @@ export const VariantBaseSchema = new SimpleSchema({
     min: 0,
     optional: true,
     defaultValue: 0
-  }
+  },
+  "productType": {
+    type: String,
+    optional: true
+  },
 });
 
 /**
@@ -450,6 +454,10 @@ export const CatalogProduct = new SimpleSchema({
     min: 0,
     optional: true,
     defaultValue: 0
+  },
+  "productType": {
+    type: String,
+    optional: true
   }
 });
 
