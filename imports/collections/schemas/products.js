@@ -72,6 +72,7 @@ registerSchema("VariantMedia", VariantMedia);
  * @property {Number} weight, default value: `0`
  * @property {Number} width optional, default value: `0`
  * @property {Workflow} workflow optional
+ * @property {String} productType optional
  */
 export const ProductVariant = new SimpleSchema({
   "_id": {
@@ -208,7 +209,11 @@ export const ProductVariant = new SimpleSchema({
     type: Workflow,
     optional: true,
     defaultValue: {}
-  }
+  },
+  "productType": {
+    type: String,
+    optional: true
+  },
 });
 
 registerSchema("ProductVariant", ProductVariant);
