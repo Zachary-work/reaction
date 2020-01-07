@@ -23,7 +23,7 @@ export default async function createFlatRateFulfillmentMethodMutation(context, i
   const { collections, userHasPermission } = context;
   const { Shipping } = collections;
 
-  if (!userHasPermission(["admin", "owner", "shipping"], shopId)) {
+  if ( !context.isInternalCall && !userHasPermission(["admin", "owner", "shipping"], shopId)) {
     throw new ReactionError("access-denied", "Access Denied");
   }
 
