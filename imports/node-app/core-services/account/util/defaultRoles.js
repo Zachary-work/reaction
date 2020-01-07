@@ -93,7 +93,8 @@ export const defaultSupplierRoles = [
   'amaz_coupons/list',
   'amaz_coupons/edit',
   'amaz_digital_orders/list',
-  'amaz_digital_orders/edit'
+  'amaz_digital_orders/edit',
+  'amaz_tag_options/list',
 ];
 
 export const defaultCompanyRoles = [
