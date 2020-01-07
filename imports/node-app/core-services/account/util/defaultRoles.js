@@ -70,14 +70,7 @@ export const defaultSupplierRoles = [
   'index',
   'tag',
   'dashboard',
-  'Companies',
-  'companies/add',
-  'companies/edit',
   'companies/list',
-  'Suppliers',
-  'suppliers/add',
-  'suppliers/edit',
-  'suppliers/list',
   'bp_accounts',
   'accounts/add',
   'accounts/edit',
@@ -100,7 +93,8 @@ export const defaultSupplierRoles = [
   'amaz_coupons/list',
   'amaz_coupons/edit',
   'amaz_digital_orders/list',
-  'amaz_digital_orders/edit'
+  'amaz_digital_orders/edit',
+  'amaz_tag_options/list',
 ];
 
 export const defaultCompanyRoles = [
