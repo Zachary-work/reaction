@@ -117,6 +117,6 @@ export default {
     domains: ["localhost"],
     defaultPaymentMethod: "none",
     paymentMethods: [],
-    availablePaymentMethods: []
+    availablePaymentMethods: ["stripe_card"]
   }]
 };
