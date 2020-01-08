@@ -751,6 +751,13 @@ export const CartItem = new SimpleSchema({
     type: ShippingParcel,
     optional: true
   },
+  "images": {
+    type: Array,
+    optional: true
+  },
+  "images.$": {
+    type: String
+  },
   "price": Money,
   "priceWhenAdded": Money,
   "productId": String,

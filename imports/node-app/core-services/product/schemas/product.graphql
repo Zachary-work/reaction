@@ -51,6 +51,9 @@ type Product {
   "When a shopper purchases this product, what types of fulfillment can they choose from?"
   supportedFulfillmentTypes: [FulfillmentType]!
 
+  "The list of image url String that have been applied to this product"
+  images: [String]
+  
   "The list of tag IDs that have been applied to this product"
   tagIds: [ID]
 
