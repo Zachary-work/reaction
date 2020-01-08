@@ -15,7 +15,7 @@ export default async function buildOrderItem(context, { currencyCode, inputItem 
     addedAt,
     price,
     productConfiguration,
-    quantity
+    quantity,
   } = inputItem;
   const { productId, productVariantId } = productConfiguration;
 
@@ -75,6 +75,7 @@ export default async function buildOrderItem(context, { currencyCode, inputItem 
       amount: finalPrice,
       currencyCode
     },
+    images: chosenProduct.images,
     productId: chosenProduct.productId,
     productSlug: chosenProduct.slug,
     productType: chosenProduct.type,

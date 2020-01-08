@@ -794,6 +794,13 @@ export const OrderItem = new SimpleSchema({
     type: ShippingParcel,
     optional: true
   },
+  "images": {
+    type: Array,
+    optional: true
+  },
+  "images.$": {
+    type: String
+  },
   "price": Money,
   "productId": String,
   "productSlug": {
