@@ -359,6 +359,13 @@ export const CatalogProduct = new SimpleSchema({
     label: "Page title",
     optional: true
   },
+  "images": {
+    type: Array,
+    optional: true
+  },
+  "images.$": {
+    type: String
+  },
   "parcel": {
     type: ShippingParcel,
     label: "Shipping parcel",

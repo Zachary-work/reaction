@@ -44,14 +44,14 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     return [rates, retrialTargets];
   }
 
-  const pkgData = await Packages.findOne({
-    name: "reaction-shipping-rates",
-    shopId: commonOrder.shopId
-  });
-
-  if (!pkgData || pkgData.settings.flatRates.enabled !== true) {
-    return [rates, retrialTargets];
-  }
+  // const pkgData = await Packages.findOne({
+  //   name: "reaction-shipping-rates",
+  //   shopId: commonOrder.shopId
+  // });
+  // 
+  // if (!pkgData || pkgData.settings.flatRates.enabled !== true) {
+  //   return [rates, retrialTargets];
+  // }
 
   const shippingQueryCondition = {
     "shopId": commonOrder.shopId,
@@ -76,7 +76,7 @@ export default async function getFulfillmentMethodsWithQuotes(context, commonOrd
     const awaitedShippingRateDocs = shippingRateDocs.map(async (doc) => {
       const carrier = doc.provider.label;
       // Check for method specific shipping restrictions
-      const filteredRestrictionShippingMethods = await filterShippingMethods(context, doc.methods, commonOrder)
+      const filteredRestrictionShippingMethods = await filterShippingMethods(context, doc.methods || [], commonOrder)
       const availableShippingMethods = filteredRestrictionShippingMethods.filter((_method) => {
         return _method.fulfillmentTypes.includes(fulfillmentType);
       });

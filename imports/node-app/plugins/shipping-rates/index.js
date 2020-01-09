@@ -44,7 +44,7 @@ export default async function register(app) {
     settings: {
       name: "Flat Rate Service",
       flatRates: {
-        enabled: false
+        enabled: true
       }
     },
     registry: [

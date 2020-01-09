@@ -237,6 +237,13 @@ export const CatalogProductOption = new SimpleSchema({
     optional: true,
     defaultValue: 0
   },
+  "images": {
+    type: Array,
+    optional: true
+  },
+  "images.$": {
+    type: String
+  },
   "media": {
     type: Array,
     label: "Media",
@@ -458,6 +465,13 @@ export const CatalogProduct = new SimpleSchema({
     min: 0,
     optional: true,
     defaultValue: 0
+  },
+  "images": {
+    type: Array,
+    optional: true
+  },
+  "images.$": {
+    type: String
   },
   "media": {
     type: Array,

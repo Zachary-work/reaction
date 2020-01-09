@@ -32,11 +32,11 @@ export default async function register(app) {
       }
     }],
     settings: {
-      mode: false,
-      api_key: "",
+      mode: true,
+      api_key: process.env.STRIPE_SECRET_KEY || "",
       public: {
-        publishable_key: "",
-        client_id: ""
+        publishable_key: process.env.STRIPE_PUBLIC_KEY || "",
+        client_id: process.env.STRIPE_CLIENT_ID || "",
       },
       connectAuth: {}
     },

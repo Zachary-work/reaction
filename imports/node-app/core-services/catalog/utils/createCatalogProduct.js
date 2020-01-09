@@ -102,6 +102,7 @@ export async function xformProduct({ context, product, variants }) {
     isVisible: !!product.isVisible,
     length: product.length,
     media: catalogProductMedia,
+    images: product.images,
     metafields: product.metafields,
     metaDescription: product.metaDescription,
     originCountry: product.originCountry,

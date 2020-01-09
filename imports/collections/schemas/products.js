@@ -326,6 +326,13 @@ export const Product = new SimpleSchema({
     type: String,
     optional: true
   },
+  "images": {
+    type: Array,
+    optional: true
+  },
+  "images.$": {
+    type: String
+  },
   "parcel": {
     type: ShippingParcel,
     optional: true

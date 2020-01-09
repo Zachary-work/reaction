@@ -114,6 +114,8 @@ type CatalogProduct implements CatalogProductOrVariant & Node {
   "The length of the product, if it has physical dimensions"
   length: Float
 
+  images: [String]
+  
   "All media for this product and its variants"
   media: [ImageInfo]
 

@@ -16,6 +16,13 @@ const inputItemSchema = new SimpleSchema({
   "productConfiguration.productId": String,
   "productConfiguration.productVariantId": String,
   "quantity": SimpleSchema.Integer,
+  "images": {
+    type: Array,
+    optional: true,
+  },
+  "images.$": {
+    type: String
+  },
   "price": Object,
   "price.currencyCode": String,
   "price.amount": {
@@ -115,6 +122,7 @@ export default async function addCartItems(context, currentItems, inputItems, op
       parcel: chosenVariant.parcel,
       // This one will be kept updated by event handler watching for
       // catalog changes whereas `priceWhenAdded` will not.
+      images: catalogProduct.images,
       price: {
         amount: variantPriceInfo.price,
         currencyCode: price.currencyCode

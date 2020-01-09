@@ -388,6 +388,8 @@ type OrderItem implements Node {
   "Packing information such as item weight, height, length, and depth. Used for calculating shipping rates."
   parcel: ShippingParcel
 
+  images: [String]
+  
   "The price of the item at the time of purchase"
   price: Money!
 

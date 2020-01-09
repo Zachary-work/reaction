@@ -161,6 +161,8 @@ type CartItem implements Node {
   "Packing information such as item weight, height, length, and depth. Used for calculating shipping rates."
   parcel: ShippingParcel
 
+  images: [String]
+  
   "The current price of the item"
   price: Money!
 
