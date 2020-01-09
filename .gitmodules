@@ -1,3 +1,0 @@
-[submodule "imports/plugins/custom"]
-	path = imports/plugins/custom
-	url = git@github.com:Zachary-work/amaz.git
